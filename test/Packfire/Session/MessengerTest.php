@@ -2,7 +2,6 @@
 
 namespace Packfire\Session;
 
-use Packfire\Session\MockSessionStorage;
 use Packfire\FuelBlade\Container;
 
 /**
