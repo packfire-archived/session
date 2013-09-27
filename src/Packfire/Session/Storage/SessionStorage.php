@@ -151,7 +151,7 @@ class SessionStorage implements ISessionStorage
     public function bucket($id)
     {
         if (isset($this->buckets[$id])) {
-            return $this->buckets->get($id);
+            return $this->buckets[$id];
         }
         return null;
     }
