@@ -27,7 +27,9 @@ To initiate a session:
 	use Packfire\Session\Storage\SessionStorage;
 
 	$session = new Session(new SessionStorage());
-	$session->register(); // session_start();
+	if (!Session::detectCookie()) { // only register session if cookie is not found.
+		Session::register(); // session_start();
+	}
 
 To regenerate a new Session ID (recommended when users sign in / out to improve security):
 
@@ -39,7 +41,7 @@ Invalidate a session (session is kept registered, but all values are cleared, se
 
 Destroy a session (session ID is removed entirely):
 
-	$session->unregister();
+	Session::unregister();
 
 Session Buckets are great way to scope down your session variables. To get started working with session buckets:
 
