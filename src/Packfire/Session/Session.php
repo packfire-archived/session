@@ -110,6 +110,11 @@ class Session implements ISession
         return $result;
     }
 
+    public static function detectCookie()
+    {
+        return !(!isset($_COOKIE[session_name()]) || !$_COOKIE[session_name()]);
+    }
+
     /**
      * Register the session
      * @since 2.1.0
