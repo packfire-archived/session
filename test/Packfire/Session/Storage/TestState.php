@@ -8,6 +8,12 @@ function session_regenerate_id($delete = null)
     TestState::$lastCalledArgs = func_get_args();
 }
 
+function session_set_save_handler()
+{
+    TestState::$lastCalled = 'session_set_save_handler';
+    TestState::$lastCalledArgs = func_get_args();
+}
+
 class TestState
 {
     public static $lastCalled;
