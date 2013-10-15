@@ -141,11 +141,7 @@ class SessionStorage implements ISessionStorage
      */
     public function register($bucket)
     {
-        $id = $bucket->id();
-        if ($id) {
-            $this->buckets[$id] = $bucket;
-            $bucket->load($_SESSION[$id]);
-        }
+        $this->buckets[$bucket->id()] = $bucket;
     }
 
     public function bucket($id)

@@ -95,19 +95,20 @@ class Session implements ISession
 
     /**
      * Fetch a session bucket
-     * @param  string        $bucket Name of the bucket to fetch
+     * @param  string        $name Name of the bucket to fetch
      * @return SessionBucket Returns the bucket
      * @since 1.0-sofia
      */
-    public function bucket($bucket)
+    public function bucket($name)
     {
-        $result = $this->storage->bucket($bucket);
-        if (!$result) {
-            $result = new SessionBucket($bucket);
-            $this->storage->register($result);
+        $bucket = $this->storage->bucket($name);
+        if (!$bucket) {
+            $bucket = new SessionBucket($name);
+            $bucket->load($_SESSION[$name]);
+            $this->storage->register($bucket);
         }
 
-        return $result;
+        return $bucket;
     }
 
     /**
