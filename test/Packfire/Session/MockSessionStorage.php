@@ -3,6 +3,7 @@
 namespace Packfire\Session;
 
 use Packfire\Session\Storage\SessionStorage as Storage;
+use Packfire\Session\Storage\ISessionHandler as HandlerInterface;
 
 /**
  * SessionStorage class
@@ -15,7 +16,7 @@ use Packfire\Session\Storage\SessionStorage as Storage;
  * @package Packfire\Session
  * @since 1.0
  */
-class MockSessionStorage extends Storage
+abstract class MockSessionStorage extends Storage implements HandlerInterface
 {
     private $data;
 
