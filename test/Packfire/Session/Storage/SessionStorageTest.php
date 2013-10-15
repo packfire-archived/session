@@ -55,16 +55,4 @@ class SessionStorageTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('session_regenerate_id', TestState::$lastCalled);
         $this->assertEquals(true, TestState::$lastCalledArgs[0]);
     }
-
-    public function testRegisterHandler()
-    {
-        $this->assertNull(TestState::$lastCalled);
-
-        $obj = $this->getMockForAbstractClass('Packfire\Session\MockSessionStorage');
-        var_dump(TestState::$lastCalled);
-        var_dump(TestState::$lastCalledArgs);
-
-        $this->assertEquals('session_set_save_handler', TestState::$lastCalled);
-        $this->assertCount(6, TestState::$lastCalledArgs);
-    }
 }
