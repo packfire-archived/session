@@ -119,7 +119,7 @@ class Session implements ISession
      * Register the session
      * @since 2.1.0
      */
-    public static function register()
+    public function register()
     {
          session_start();
     }
@@ -128,7 +128,7 @@ class Session implements ISession
      * Unregister the session
      * @since 2.1.0
      */
-    public static function unregister()
+    public function unregister()
     {
          session_destroy();
          setcookie(session_name(), '', -1);

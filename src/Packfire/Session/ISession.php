@@ -17,7 +17,7 @@ namespace Packfire\Session;
  * @author Sam-Mauris Yong / mauris@hotmail.sg
  * @copyright Copyright (c) Sam-Mauris Yong
  * @license http://www.opensource.org/licenses/bsd-license New BSD License
- * @package packfire.session
+ * @package Packfire\Session
  * @since 1.0-sofia
  */
 interface ISession
@@ -33,4 +33,8 @@ interface ISession
     public function invalidate();
 
     public function regenerate();
+
+    public function register();
+
+    public function unregister();
 }
