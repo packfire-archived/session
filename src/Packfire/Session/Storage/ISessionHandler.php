@@ -31,7 +31,7 @@ interface ISessionHandler
 
     public function destroy($sessionId);
 
-    public function garbageCollect($life);
+    public function gc($life);
 
     public function close();
 }
