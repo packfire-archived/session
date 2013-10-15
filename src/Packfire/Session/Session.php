@@ -127,7 +127,9 @@ class Session implements ISession
      */
     public function register()
     {
-        session_start();
+        if (!self::detectCookie()) {
+            session_start();
+        }
     }
 
     /**

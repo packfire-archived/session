@@ -50,7 +50,7 @@ class Loader implements ConsumerInterface
         }
         $c['session'] = $c->share(
             function ($c) use ($storageId) {
-                if (isset($_COOKIE[session_name()]) && $_COOKIE[session_name()]) {
+                if (Session::detectCookie()) {
                     session_start();
                 }
 
