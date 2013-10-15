@@ -110,6 +110,12 @@ class Session implements ISession
         return $result;
     }
 
+    /**
+     * Check if the session cookie is set.
+     * @return boolean Returns true if the cookie is set, false otherwise.
+     * @static
+     * @since 2.1.0
+     */
     public static function detectCookie()
     {
         return !(!isset($_COOKIE[session_name()]) || !$_COOKIE[session_name()]);
@@ -121,7 +127,7 @@ class Session implements ISession
      */
     public function register()
     {
-         session_start();
+        session_start();
     }
 
     /**
