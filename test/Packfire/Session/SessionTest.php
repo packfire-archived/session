@@ -149,6 +149,15 @@ class SessionTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(SessionState::queryStart());
     }
 
+    public function testUnregister()
+    {
+        $this->assertFalse(SessionState::queryStart());
+        $this->object->register();
+        $this->assertTrue(SessionState::queryStart());
+        $this->object->unregister();
+        $this->assertFalse(SessionState::queryStart());
+    }
+
     public function testDetectCookie()
     {
         $this->assertFalse(Session::detectCookie());
