@@ -4,7 +4,7 @@ namespace Packfire\Session\Storage;
 
 function session_regenerate_id($delete = null)
 {
-    TestState::$lastCalled = __FUNCTION__;
+    TestState::$lastCalled = 'session_regenerate_id';
     TestState::$lastCalledArgs = func_get_args();
 }
 

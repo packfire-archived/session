@@ -11,6 +11,11 @@ use Packfire\FuelBlade\Container;
  */
 class SessionStorageTest extends \PHPUnit_Framework_TestCase
 {
+    protected function setUp()
+    {
+        TestState::reset();
+    }
+
     public function testId()
     {
         $obj = new SessionStorage();
@@ -39,5 +44,15 @@ class SessionStorageTest extends \PHPUnit_Framework_TestCase
         $obj->set('key', true);
         $obj->clear();
         $this->assertNull($obj->get('key'));
+    }
+
+    public function testRegenerate()
+    {
+        $this->assertNull(TestState::$lastCalled);
+
+        $obj = new SessionStorage();
+        $obj->regenerate(true);
+        $this->assertEquals('session_regenerate_id', TestState::$lastCalled);
+        $this->assertEquals(true, TestState::$lastCalledArgs[0]);
     }
 }
