@@ -24,6 +24,8 @@ class SessionTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
+        SessionState::reset();
+
         $storageStub = $this->getMock('Packfire\Session\Storage\ISessionStorage');
         $storageStub->expects($this->once())
             ->method('load');
@@ -138,5 +140,12 @@ class SessionTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue(true));
 
         $this->assertTrue($this->object->bucket('test'));
+    }
+
+    public function testRegister()
+    {
+        $this->assertFalse(SessionState::queryStart());
+        $this->object->register();
+        $this->assertTrue(SessionState::queryStart());
     }
 }
