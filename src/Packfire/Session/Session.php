@@ -40,7 +40,7 @@ class Session implements ISession
     public function __construct($storage)
     {
         $this->storage = $storage;
-        $this->storage->load();
+        $this->storage->load($_SESSION);
     }
 
     /**

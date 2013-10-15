@@ -163,10 +163,6 @@ class SessionStorage implements ISessionStorage
 
     public function load(&$data = null)
     {
-        if (func_num_args() == 0) {
-            $data = &$_SESSION;
-        }
-
         $this->overallBucket->load($data);
 
         foreach ($this->buckets as $id => $bucket) {
