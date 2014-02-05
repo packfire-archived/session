@@ -21,7 +21,7 @@ namespace Packfire\Session\Storage;
  * @since 1.0-sofia
  * @link http://php.net/manual/en/function.session-set-save-handler.php
  */
-interface ISessionHandler
+interface SessionHandlerInterface
 {
     public function open($path, $sessionName);
 

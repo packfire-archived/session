@@ -11,7 +11,7 @@
 
 namespace Packfire\Session\Storage;
 
-use Packfire\Session\Bucket\ISessionBucket;
+use Packfire\Session\Bucket\SessionBucketInterface;
 
 /**
  * A session storage abstraction
@@ -22,26 +22,26 @@ use Packfire\Session\Bucket\ISessionBucket;
  * @package Packfire\Session\Storage
  * @since 1.0-sofia
  */
-interface SessionStorageInterface extends ISessionBucket
+interface SessionStorageInterface extends SessionBucketInterface
 {
     /**
      * Regenerate the session
-     * @param boolean $delete Set if the previous session should be deleted
+     * @param bool $delete Set if the previous session should be deleted
      * @since 1.0-sofia
      */
     public function regenerate($delete = false);
 
     /**
      * Register a bucket into the session storage
-     * @param ISessionBucket $bucket The bucket to be registered.
+     * @param Packfire\Session\Bucket\SessionBucketInterface $bucket The bucket to be registered.
      * @since 1.0-sofia
      */
     public function register($bucket);
 
     /**
      * Get the bucket in the storage by the ID
-     * @param  string         $id The identifier of the storage
-     * @return ISessionBucket Returns the session bucket
+     * @param string $id The identifier of the storage
+     * @return Packfire\Session\Bucket\SessionBucketInterface Returns the session bucket
      * @since 1.0-sofia
      */
     public function bucket($id);

@@ -20,7 +20,7 @@ namespace Packfire\Session\Bucket;
  * @package Packfire\Session\Bucket
  * @since 1.0-sofia
  */
-interface ISessionBucket
+interface SessionBucketInterface
 {
     public function id();
 

@@ -3,7 +3,7 @@
 namespace Packfire\Session;
 
 use Packfire\Session\Storage\SessionStorage as Storage;
-use Packfire\Session\Storage\ISessionHandler as HandlerInterface;
+use Packfire\Session\Storage\SessionHandlerInterface as HandlerInterface;
 
 /**
  * SessionStorage class

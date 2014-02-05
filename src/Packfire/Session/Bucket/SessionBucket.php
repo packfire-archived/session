@@ -11,8 +11,6 @@
 
 namespace Packfire\Session\Bucket;
 
-use Packfire\Session\Bucket\ISessionBucket;
-
 /**
  * Session Bucket default implementation
  *
@@ -22,7 +20,7 @@ use Packfire\Session\Bucket\ISessionBucket;
  * @package Packfire\Session\Bucket
  * @since 1.0-sofia
  */
-class SessionBucket implements ISessionBucket
+class SessionBucket implements SessionBucketInterface
 {
     /**
      * The identifier of the bucket
