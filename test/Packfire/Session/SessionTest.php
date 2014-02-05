@@ -26,7 +26,7 @@ class SessionTest extends \PHPUnit_Framework_TestCase
     {
         SessionState::reset();
 
-        $storageStub = $this->getMock('Packfire\Session\Storage\ISessionStorage');
+        $storageStub = $this->getMock('Packfire\\Session\\Storage\\SessionStorageInterface');
         $storageStub->expects($this->once())
             ->method('load');
         $this->stub = $storageStub;
@@ -124,7 +124,7 @@ class SessionTest extends \PHPUnit_Framework_TestCase
 
         $this->stub->expects($this->once())
             ->method('register')
-            ->with($this->isInstanceOf('Packfire\Session\Bucket\SessionBucket'));
+            ->with($this->isInstanceOf('Packfire\\Session\\Bucket\\SessionBucket'));
 
         $this->object->bucket('test');
     }

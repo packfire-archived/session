@@ -22,7 +22,7 @@ use Packfire\Session\Bucket\ISessionBucket;
  * @package Packfire\Session\Storage
  * @since 1.0-sofia
  */
-interface ISessionStorage extends ISessionBucket
+interface SessionStorageInterface extends ISessionBucket
 {
     /**
      * Regenerate the session
