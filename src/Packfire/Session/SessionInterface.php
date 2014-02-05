@@ -20,7 +20,7 @@ namespace Packfire\Session;
  * @package Packfire\Session
  * @since 1.0-sofia
  */
-interface ISession
+interface SessionInterface
 {
     public function __construct($storage);
 

@@ -11,7 +11,6 @@
 
 namespace Packfire\Session;
 
-use Packfire\Session\ISession;
 use Packfire\Session\Bucket\SessionBucket;
 
 /**
@@ -23,7 +22,7 @@ use Packfire\Session\Bucket\SessionBucket;
  * @package Packfire\Session
  * @since 1.0-sofia
  */
-class Session implements ISession
+class Session implements SessionInterface
 {
     /**
      * Session Storage
