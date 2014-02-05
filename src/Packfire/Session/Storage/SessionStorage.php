@@ -13,7 +13,6 @@ namespace Packfire\Session\Storage;
 
 use Packfire\Session\Storage\ISessionStorage;
 use Packfire\Session\Bucket\SessionBucket;
-use Packfire\Collection\Map;
 
 /**
  * Provides session storage
