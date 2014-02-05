@@ -26,7 +26,7 @@ class MessengerTest extends \PHPUnit_Framework_TestCase
         $this->object = new Messenger;
         $this->ioc = new Container();
         $bucket = $this->ioc;
-        $bucket['session.storage'] = $this->getMockForAbstractClass('Packfire\Session\MockSessionStorage');
+        $bucket['session.storage'] = $this->getMockForAbstractClass('Packfire\\Session\\MockStorage');
 
         $bucket['session'] = $bucket->share(
             function ($c) {
