@@ -27,14 +27,14 @@ class Messenger implements ConsumerInterface
 {
     /**
      * The session bucket instance
-     * @var \Packfire\Session\Bucket\ISessionBucket
+     * @var \Packfire\Session\BucketInterface
      * @since 2.1.0
      */
-    private $session;
+    private $bucket;
 
     public function __invoke($container)
     {
-        $this->session = $container['session']->bucket('Messenger');
+        $this->bucket = $container['session']->bucket('Messenger');
 
         return $this;
     }
@@ -72,7 +72,7 @@ class Messenger implements ConsumerInterface
                 $this->send($name, $to, $message);
             }
         } else {
-            $this->session->set($this->buildKey($name, $recepient), $message);
+            $this->bucket->set($this->buildKey($name, $recepient), $message);
         }
     }
 
@@ -93,7 +93,7 @@ class Messenger implements ConsumerInterface
                     $trace['class'] . ':' : '') . $trace['function'];
         }
 
-        return $this->session->has($this->buildKey($name, $recepient));
+        return $this->bucket->has($this->buildKey($name, $recepient));
     }
 
     /**
@@ -114,8 +114,8 @@ class Messenger implements ConsumerInterface
                     $trace['class'] . ':' : '') . $trace['function'];
         }
         $key = $this->buildKey($name, $recepient);
-        $content = $this->session->get($key);
-        $this->session->remove($key);
+        $content = $this->bucket->get($key);
+        $this->bucket->remove($key);
 
         return $content;
     }
@@ -126,6 +126,6 @@ class Messenger implements ConsumerInterface
      */
     public function clear()
     {
-        $this->session->clear();
+        $this->bucket->clear();
     }
 }

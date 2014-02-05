@@ -2,11 +2,11 @@
 
 namespace Packfire\Session;
 
-use Packfire\Session\Storage\SessionStorage as Storage;
-use Packfire\Session\Storage\SessionHandlerInterface as HandlerInterface;
+use Packfire\Session\Storage;
+use Packfire\Session\HandlerInterface;
 
 /**
- * SessionStorage class
+ * Storage class
  *
  * Mock session storage location
  *

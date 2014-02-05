@@ -9,7 +9,7 @@
  * All rights reserved.
  */
 
-namespace Packfire\Session\Storage;
+namespace Packfire\Session;
 
 /**
  * An interface for session handling
@@ -17,11 +17,11 @@ namespace Packfire\Session\Storage;
  * @author Sam-Mauris Yong / mauris@hotmail.sg
  * @copyright Copyright (c) Sam-Mauris Yong
  * @license http://www.opensource.org/licenses/bsd-license New BSD License
- * @package Packfire\Session\Storage
+ * @package Packfire\Session
  * @since 1.0-sofia
  * @link http://php.net/manual/en/function.session-set-save-handler.php
  */
-interface SessionHandlerInterface
+interface HandlerInterface
 {
     public function open($path, $sessionName);
 

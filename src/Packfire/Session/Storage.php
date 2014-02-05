@@ -9,7 +9,7 @@
  * All rights reserved.
  */
 
-namespace Packfire\Session\Storage;
+namespace Packfire\Session;
 
 use Packfire\Session\Bucket\SessionBucket;
 
@@ -19,10 +19,10 @@ use Packfire\Session\Bucket\SessionBucket;
  * @author Sam-Mauris Yong / mauris@hotmail.sg
  * @copyright Copyright (c) Sam-Mauris Yong
  * @license http://www.opensource.org/licenses/bsd-license New BSD License
- * @package Packfire\Session\Storage
+ * @package Packfire\Session
  * @since 1.0-sofia
  */
-class SessionStorage implements SessionStorageInterface
+class Storage implements StorageInterface
 {
     /**
      * The container of buckets
@@ -33,19 +33,19 @@ class SessionStorage implements SessionStorageInterface
 
     /**
      * The overall storage
-     * @var \Packfire\Session\SessionBucket
+     * @var Packfire\Session\BucketInterface
      * @since 1.0-sofia
      */
     private $overallBucket;
 
     /**
-     * Create a new SessionStorage object
+     * Create a new torage object
      * @since 1.0-sofia
      */
     public function __construct()
     {
         $this->buckets = array();
-        $this->overallBucket = new SessionBucket($this->id());
+        $this->overallBucket = new Bucket($this->id());
         $this->registerHandler();
         $this->registerShutdown();
     }
@@ -96,7 +96,7 @@ class SessionStorage implements SessionStorageInterface
 
     /**
      * Regenerate a new session ID
-     * @param boolean $delete (optional) Set to delete old session or not
+     * @param bool $delete (optional) Set to delete old session or not
      * @since 1.0-sofia
      */
     public function regenerate($delete = false)
@@ -110,7 +110,7 @@ class SessionStorage implements SessionStorageInterface
      */
     protected function registerHandler()
     {
-        if ($this instanceof ISessionHandler
+        if ($this instanceof HandlerInterface
                 || $this instanceof \SessionHandlerInterface) {
             session_set_save_handler(
                 array($this, 'open'),
@@ -134,7 +134,7 @@ class SessionStorage implements SessionStorageInterface
 
     /**
      * Register a bucket to the storage
-     * @param ISessionBucket $bucket The bucket to register
+     * @param Packfire\Session\BucketInterface $bucket The bucket to register
      * @since 1.0-sofia
      */
     public function register($bucket)

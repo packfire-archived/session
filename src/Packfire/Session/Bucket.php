@@ -9,7 +9,7 @@
  * All rights reserved.
  */
 
-namespace Packfire\Session\Bucket;
+namespace Packfire\Session;
 
 /**
  * Session Bucket default implementation
@@ -17,10 +17,10 @@ namespace Packfire\Session\Bucket;
  * @author Sam-Mauris Yong / mauris@hotmail.sg
  * @copyright Copyright (c) Sam-Mauris Yong
  * @license http://www.opensource.org/licenses/bsd-license New BSD License
- * @package Packfire\Session\Bucket
+ * @package Packfire\Session
  * @since 1.0-sofia
  */
-class SessionBucket implements SessionBucketInterface
+class Bucket implements BucketInterface
 {
     /**
      * The identifier of the bucket

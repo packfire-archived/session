@@ -11,8 +11,6 @@
 
 namespace Packfire\Session;
 
-use Packfire\Session\Bucket\SessionBucket;
-
 /**
  * Session service implementation
  *
@@ -26,7 +24,7 @@ class Session implements SessionInterface
 {
     /**
      * Session Storage
-     * @var ISessionStorage
+     * @var Packfire\Session\StorageInterface
      * @since 1.0-sofia
      */
     private $storage;
@@ -102,7 +100,7 @@ class Session implements SessionInterface
     {
         $bucket = $this->storage->bucket($name);
         if (!$bucket) {
-            $bucket = new SessionBucket($name);
+            $bucket = new Bucket($name);
             $bucket->load($_SESSION[$name]);
             $this->storage->register($bucket);
         }

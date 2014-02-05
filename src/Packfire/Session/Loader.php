@@ -11,8 +11,6 @@
 
 namespace Packfire\Session;
 
-use Packfire\Session\Storage\SessionStorage;
-use Packfire\Session\Session;
 use Packfire\FuelBlade\ConsumerInterface;
 
 /**
@@ -32,7 +30,7 @@ class Loader implements ConsumerInterface
         if (!isset($c[$storageId])) {
             $c[$storageId] = $c->share(
                 function () {
-                    return new SessionStorage();
+                    return new Storage();
                 }
             );
         }

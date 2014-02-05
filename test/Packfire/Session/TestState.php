@@ -1,6 +1,6 @@
 <?php
 
-namespace Packfire\Session\Storage;
+namespace Packfire\Session;
 
 function session_regenerate_id($delete = null)
 {
