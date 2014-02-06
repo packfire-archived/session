@@ -26,7 +26,7 @@ class Loader implements ConsumerInterface
 {
     public function __invoke($c)
     {
-        $storageId = 'session.storage';
+        $storageId = 'Packfire\\Session\\StorageInterface';
         if (!isset($c[$storageId])) {
             $c[$storageId] = $c->share(
                 function () {
@@ -34,9 +34,9 @@ class Loader implements ConsumerInterface
                 }
             );
         }
-        if (isset($c['config'])) {
-            /* @var $config \Packfire\Config\Config */
-            $config = $c['config'];
+        if (isset($c['Packfire\\Config\\ConfigInterface'])) {
+            /* @var $config Packfire\Config\Config */
+            $config = $c['Packfire\\Config\\ConfigInterface'];
             session_name($config->get('session', 'name'));
             session_set_cookie_params(
                 $config->get('session', 'lifetime'),
@@ -46,7 +46,7 @@ class Loader implements ConsumerInterface
                 $config->get('session', 'http')
             );
         }
-        $c['session'] = $c->share(
+        $c['Packfire\\Session\\SessionInterface'] = $c->share(
             function ($c) use ($storageId) {
                 if (Session::detectCookie()) {
                     session_start();
