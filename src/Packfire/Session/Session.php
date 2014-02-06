@@ -31,10 +31,10 @@ class Session implements SessionInterface
 
     /**
      * Create a new Session object
-     * @param ISessionStorage $storage The session storage object
+     * @param Packfire\Session\StorageInterface $storage The session storage object
      * @since 1.0-sofia
      */
-    public function __construct($storage)
+    public function __construct(StorageInterface $storage)
     {
         $this->storage = $storage;
         $this->storage->load($_SESSION);

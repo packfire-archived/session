@@ -22,7 +22,7 @@ namespace Packfire\Session;
  */
 interface SessionInterface
 {
-    public function __construct($storage);
+    public function __construct(StorageInterface $storage);
 
     public function get($key);
 

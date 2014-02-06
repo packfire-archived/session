@@ -34,7 +34,7 @@ class Messenger implements ConsumerInterface
 
     public function __invoke($container)
     {
-        $this->bucket = $container['session']->bucket('Messenger');
+        $this->bucket = $container['Packfire\\Session\\SessionInterface']->bucket('Messenger');
 
         return $this;
     }

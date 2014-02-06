@@ -26,13 +26,9 @@ class MessengerTest extends \PHPUnit_Framework_TestCase
         $this->object = new Messenger;
         $this->ioc = new Container();
         $bucket = $this->ioc;
-        $bucket['session.storage'] = $this->getMockForAbstractClass('Packfire\\Session\\MockStorage');
+        $bucket['Packfire\\Session\\StorageInterface'] = $this->getMockForAbstractClass('Packfire\\Session\\MockStorage');
 
-        $bucket['session'] = $bucket->share(
-            function ($c) {
-                return new Session($c['session.storage']);
-            }
-        );
+        $bucket['Packfire\\Session\\SessionInterface'] = $bucket->instance('Packfire\\Session\\Session');
         $bucket['messenger'] = $this->object;
 
         call_user_func($this->object, $this->ioc);
@@ -52,7 +48,7 @@ class MessengerTest extends \PHPUnit_Framework_TestCase
     public function testSend()
     {
         $this->object->send('test', 'sofia');
-        $this->assertEquals(array('Messenger' => array('$sofia/test' => true)), $this->ioc['session.storage']->data());
+        $this->assertEquals(array('Messenger' => array('$sofia/test' => true)), $this->ioc['Packfire\\Session\\StorageInterface']->data());
     }
 
     /**
@@ -61,7 +57,7 @@ class MessengerTest extends \PHPUnit_Framework_TestCase
     public function testSend2()
     {
         $this->object->send('test', 'sofia', 'test message');
-        $this->assertEquals(array('Messenger' => array('$sofia/test' => 'test message')), $this->ioc['session.storage']->data());
+        $this->assertEquals(array('Messenger' => array('$sofia/test' => 'test message')), $this->ioc['Packfire\\Session\\StorageInterface']->data());
     }
 
     /**
@@ -70,7 +66,7 @@ class MessengerTest extends \PHPUnit_Framework_TestCase
     public function testSend3()
     {
         $this->object->send('test', array('sofia', 'elenor'));
-        $this->assertEquals(array('Messenger' => array('$sofia/test' => true, '$elenor/test' => true)), $this->ioc['session.storage']->data());
+        $this->assertEquals(array('Messenger' => array('$sofia/test' => true, '$elenor/test' => true)), $this->ioc['Packfire\\Session\\StorageInterface']->data());
     }
 
     /**
@@ -79,7 +75,7 @@ class MessengerTest extends \PHPUnit_Framework_TestCase
     public function testSend4()
     {
         $this->object->send('msg');
-        $this->assertEquals(array('Messenger' => array('${global}/msg' => true)), $this->ioc['session.storage']->data());
+        $this->assertEquals(array('Messenger' => array('${global}/msg' => true)), $this->ioc['Packfire\\Session\\StorageInterface']->data());
     }
 
     /**
@@ -88,7 +84,7 @@ class MessengerTest extends \PHPUnit_Framework_TestCase
     public function testSend5()
     {
         $this->object->send('msg', null, 10);
-        $this->assertEquals(array('Messenger' => array('${global}/msg' => 10)), $this->ioc['session.storage']->data());
+        $this->assertEquals(array('Messenger' => array('${global}/msg' => 10)), $this->ioc['Packfire\\Session\\StorageInterface']->data());
     }
 
     /**
@@ -138,9 +134,9 @@ class MessengerTest extends \PHPUnit_Framework_TestCase
     {
         $this->object->send('note', __CLASS__ . ':' . __FUNCTION__);
         $this->object->send('note2', __CLASS__ . ':' . __FUNCTION__, 'pretty please?');
-        $data = $this->ioc['session.storage']->data();
+        $data = $this->ioc['Packfire\\Session\\StorageInterface']->data();
         $this->assertCount(2, $data['Messenger']);
         $this->object->clear();
-        $this->assertEquals(array('Messenger' => array()), $this->ioc['session.storage']->data());
+        $this->assertEquals(array('Messenger' => array()), $this->ioc['Packfire\\Session\\StorageInterface']->data());
     }
 }
