@@ -170,6 +170,6 @@ class Storage implements StorageInterface
 
     public function has($key)
     {
-        $this->overallBucket->has($key);
+        return $this->overallBucket->has($key);
     }
 }

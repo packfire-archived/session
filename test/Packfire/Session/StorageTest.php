@@ -25,6 +25,15 @@ class StorageTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(10, $obj->get('NULL_KEY', 10));
     }
 
+    public function testSetHas()
+    {
+        $obj = new Storage();
+        $this->assertNull($obj->get('NULL_KEY'));
+        $obj->set('NULL_KEY', 10);
+        $this->assertEquals(10, $obj->get('NULL_KEY'));
+        $this->assertTrue($obj->has('NULL_KEY'));
+    }
+
     public function testRemove()
     {
         $obj = new Storage();
